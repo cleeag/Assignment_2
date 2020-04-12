@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Assignment_2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Assignment_2">
+				<Option output="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Assignment_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/chin/CLionProjects/Assignment_2/."/>
+					<Add directory="/Users/chin/CLionProjects/Assignment_2/ncurses_lib"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Assignment_2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Assignment_2/fast">
+				<Option output="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Assignment_2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/chin/CLionProjects/Assignment_2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/chin/CLionProjects/Assignment_2/."/>
+					<Add directory="/Users/chin/CLionProjects/Assignment_2/ncurses_lib"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 Assignment_2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/chin/CLionProjects/Assignment_2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Controller.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Controller.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Employee.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Object.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Object.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Property.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/Scene.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoCattlefarm.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoCattlefarm.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoCow.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoCow.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoEmployee.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFarmer.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFarmer.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFarmland.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFarmland.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFeeder.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoFeeder.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoProperty.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/TodoScene.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/View.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/View.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/definition.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/main.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/ncurses_lib/curses.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/ncurses_lib/panel.h">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/test.cpp">
+			<Option target="Assignment_2"/>
+		</Unit>
+		<Unit filename="/Users/chin/CLionProjects/Assignment_2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
