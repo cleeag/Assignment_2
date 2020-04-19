@@ -41,7 +41,6 @@ int Cow::getLifespan() const {
 }
 
 bool Cow::isAlive() const {
-    if (getWorkAge() > m_lifespan) return false:
-    else return true;
+    return getWorkAge() <= m_lifespan;
 }
 

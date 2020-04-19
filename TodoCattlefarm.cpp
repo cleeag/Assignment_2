@@ -25,3 +25,40 @@ const int CATTLEFARM_MAX_NUM_EMPLOYEE_MIN = 6;
 const int CATTLEFARM_MAX_NUM_EMPLOYEE_MAX = (CATTLEFARM_SIZE_X-2) * (CATTLEFARM_SIZE_Y-2);
 
 // TODO: Start to implement your code.
+Cattlefarm::Cattlefarm():Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MAX) {}
+bool Cattlefarm::checkEmployee(Employee*) const{
+}
+void Cattlefarm::upgrade(){
+    Property::upgrade();
+}
+int Cattlefarm::makeMoney() const {
+    int num_cow = 0, feeders_at_work = 0;
+    const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
+    getConstEmployeeList(const_emp_list);
+    for (int i = 0; i < getNumEmployee(); ++i) {
+        if (const_emp_list[i]->getName() == "Feeder" and const_emp_list[i]->getState() == ObjectState::WORK)
+            feeders_at_work++;
+        if (const_emp_list[i]->getName() == "Cow")
+            num_cow++;
+    }
+    return min(num_cow , feeders_at_work) * getLevel() * 10 ;
+}
+
+void Cattlefarm::removeDiedCow() {
+    const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
+    getConstEmployeeList(const_emp_list);
+    for (int i = 0; i < getNumEmployee(); ++i) {
+        const Employee* c = const_emp_list[i];
+        if (const_emp_list[i]->getName() == "Cow" and const_emp_list[i].isAlive){
+            fireEmployee()
+
+        }
+    }
+}
+
+char Cattlefarm::getSymbol() const{
+    return 'C';
+}
+string Cattlefarm::getName() const{
+    return "Cattlefarm";
+}
