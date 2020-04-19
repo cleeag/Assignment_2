@@ -108,7 +108,3 @@ bool Property::assignEmployee(Employee*);
 // We gave some examples to clarify the "inside" and "outside" on the webpage.
 // Return true, if assign successfully.
 bool Property::fireEmployee(Employee*);
-
-
-//return ObjectType::PROPERTY to identify that is an EMPLOYEE type.
-virtual ObjectType getObjectType() const override {return ObjectType::PROPERTY;}

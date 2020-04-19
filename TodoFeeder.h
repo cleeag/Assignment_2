@@ -9,4 +9,15 @@
 
 #include "Employee.h"
 // TODO: Start to implement your code.
+class Feeder : public Employee {
+public:
+    Feeder();
+
+    ~Feeder();
+
+    string getName() const override;
+
+    char getSymbol() const override;
+
+};
 #endif /*FEEDER_H_*/

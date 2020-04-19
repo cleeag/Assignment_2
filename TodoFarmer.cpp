@@ -14,3 +14,14 @@ const int FARMER_NUM_WORK_DAYS = 3;
 const int FARMER_NUM_REST_DAYS = 1;
 
 // TODO: Start to implement your code.
+Farmer::Farmer(): Employee(FARMER_COST, FARMER_SALARY, FARMER_NUM_WORK_DAYS, FARMER_NUM_REST_DAYS){}
+
+Farmer::~Farmer()= default;
+
+string Farmer::getName() const {
+    return "Farmer";
+}
+
+char Farmer::getSymbol() const {
+    return 'r';
+}

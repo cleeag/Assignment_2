@@ -70,33 +70,43 @@ int Employee::getSalary() const {
 //Its state changes between WORK(first)/REST.
 void Employee::updateState() {
     int work_age = getWorkAge();
+    int full_cycle = getNumRestDays() + getNumWorkDays();
+
     if (work_age == 0) {
         setState(ObjectState::WORK);
-    } else if (getName() == "Employee") {
-        if (work_age % 2 == 1) {
-            setState(ObjectState::REST);
-        } else if (work_age % 2 == 0) {
-            setState(ObjectState::WORK);
-        }
-    } else if (getName() == "Farmer") {
-        if (work_age % 4 == 3) {
-            setState(ObjectState::REST);
-        } else if (work_age % 4 == 0) {
-            setState(ObjectState::WORK);
-        }
-    } else if (getName() == "Feeder") {
-        if (work_age % 7 == 6) {
-            setState(ObjectState::REST);
-        } else if (work_age % 7 == 0) {
-            setState(ObjectState::WORK);
-        }
-    } else if (getName() == "Cow") {
-        if (work_age % 2 == 1) {
-            setState(ObjectState::REST);
-        } else if (work_age % 2 == 0) {
-            setState(ObjectState::WORK);
-        }
+    } else if(work_age % full_cycle == full_cycle - 1){
+        setState(ObjectState::REST);
+    } else if (work_age % full_cycle == 0){
+        setState(ObjectState::WORK);
     }
+
+//    if (work_age == 0) {
+//        setState(ObjectState::WORK);
+//    } else if (getName() == "Employee") {
+//        if (work_age % 2 == 1) {
+//            setState(ObjectState::REST);
+//        } else if (work_age % 2 == 0) {
+//            setState(ObjectState::WORK);
+//        }
+//    } else if (getName() == "Farmer") {
+//        if (work_age % 4 == 3) {
+//            setState(ObjectState::REST);
+//        } else if (work_age % 4 == 0) {
+//            setState(ObjectState::WORK);
+//        }
+//    } else if (getName() == "Feeder") {
+//        if (work_age % 7 == 6) {
+//            setState(ObjectState::REST);
+//        } else if (work_age % 7 == 0) {
+//            setState(ObjectState::WORK);
+//        }
+//    } else if (getName() == "Cow") {
+//        if (work_age % 2 == 1) {
+//            setState(ObjectState::REST);
+//        } else if (work_age % 2 == 0) {
+//            setState(ObjectState::WORK);
+//        }
+//    }
 
     updateWorkAge();
 }
