@@ -16,7 +16,7 @@ extern const int CATTLEFARM_SIZE_Y;
 // TODO: Start to implement your code.
 class Cattlefarm: public Property{
 public:
-    Cattlefarm();
+    Cattlefarm(int, int);
     bool checkEmployee(Employee*) const;
     void upgrade();
     int makeMoney() const;

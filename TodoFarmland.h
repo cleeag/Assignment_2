@@ -13,7 +13,7 @@ extern const int FARMLAND_SIZE_Y;
 // TODO: Start to implement your code.
 class Farmland: public Property{
 public:
-    Farmland();
+    Farmland(int, int);
     bool checkEmployee(Employee*) const;
     void upgrade();
     int makeMoney() const;

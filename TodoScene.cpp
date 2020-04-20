@@ -168,7 +168,7 @@ bool Scene::isGameOver() const{
 }
 
 void Scene::removeProperty(Property* p){
-    Property** newobjects = new Object*[m_num_objects + 1];
+    Object** newobjects = new Object*[m_num_objects + 1];
     for (int i = 0; i < m_num_objects; i++)
         newobjects[i] = m_objects[i];
     newobjects[m_num_objects++] = newobj;

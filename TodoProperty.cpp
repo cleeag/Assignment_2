@@ -97,6 +97,7 @@ void Property::setMaxNumEmployee(int m) {
 // Return true, if assign successfully.
 // Otherwise, return false.
 bool Property::assignEmployee(Employee *a) {
+    if (a == nullptr) return false;
     if (getNumEmployee() == getMaxNumEmployee()) return false;
     for (int l = 0; l < getNumEmployee(); ++l) {
         if (a == m_employee_list[l]) return false;
@@ -138,6 +139,8 @@ bool Property::assignEmployee(Employee *a) {
 // We gave some examples to clarify the "inside" and "outside" on the webpage.
 // Return true, if assign successfully.
 bool Property::fireEmployee(Employee *fired_emp) {
+    if (fired_emp == nullptr) return false;
+
     Employee **copy_of_emp = new Employee *[m_num_employee - 1];
     for (int i = 0, j = 0; i < m_num_employee;){
         if (fired_emp == m_employee_list[i]) {

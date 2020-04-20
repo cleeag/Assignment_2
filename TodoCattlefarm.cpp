@@ -20,20 +20,30 @@
 
 const int CATTLEFARM_COST = 80;
 const int CATTLEFARM_UPGRADE_COST = 16;
-const int CATTLEFARM_SIZE_X = 6; const int CATTLEFARM_SIZE_Y = 6;
+const int CATTLEFARM_SIZE_X = 6;
+const int CATTLEFARM_SIZE_Y = 6;
 const int CATTLEFARM_MAX_NUM_EMPLOYEE_MIN = 6;
-const int CATTLEFARM_MAX_NUM_EMPLOYEE_MAX = (CATTLEFARM_SIZE_X-2) * (CATTLEFARM_SIZE_Y-2);
+const int CATTLEFARM_MAX_NUM_EMPLOYEE_MAX = (CATTLEFARM_SIZE_X - 2) * (CATTLEFARM_SIZE_Y - 2);
 
 // TODO: Start to implement your code.
-Cattlefarm::Cattlefarm():Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MAX) {}
-bool Cattlefarm::checkEmployee(Employee*) const{
+Cattlefarm::Cattlefarm(int x, int y) :
+        Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MAX) {
+    setXY(x, y);
 }
-void Cattlefarm::upgrade(){
+
+bool Cattlefarm::checkEmployee(Employee * emp) const {
+    if (emp == nullptr) return false;
+    if (emp->getName() == "Feeder" or emp->getName() == "Cow") return true;
+    else return false;
+}
+
+void Cattlefarm::upgrade() {
     Property::upgrade();
 }
+
 int Cattlefarm::makeMoney() const {
     int num_cow = 0, feeders_at_work = 0;
-    const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
+    const Employee **const_emp_list = new const Employee *[getNumEmployee()];
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
         if (const_emp_list[i]->getName() == "Feeder" and const_emp_list[i]->getState() == ObjectState::WORK)
@@ -41,25 +51,26 @@ int Cattlefarm::makeMoney() const {
         if (const_emp_list[i]->getName() == "Cow")
             num_cow++;
     }
-    return min(num_cow , feeders_at_work) * getLevel() * 10 ;
+    return min(num_cow, feeders_at_work) * getLevel() * 10;
 }
 
 void Cattlefarm::removeDiedCow() {
-    const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
+    const Employee **const_emp_list = new const Employee *[getNumEmployee()];
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
-        if (const_emp_list[i]->getName() != "Cow" ) continue;
-        Employee* tmp_e = const_cast<Employee*>(const_emp_list[i]);
-        Cow* tmp_cow = dynamic_cast<Cow*>(tmp_e);
-        if (!tmp_cow->isAlive()){
+        if (const_emp_list[i]->getName() != "Cow") continue;
+        Employee *tmp_e = const_cast<Employee *>(const_emp_list[i]);
+        Cow *tmp_cow = dynamic_cast<Cow *>(tmp_e);
+        if (!tmp_cow->isAlive()) {
             fireEmployee(tmp_cow);
         }
     }
 }
 
-char Cattlefarm::getSymbol() const{
+char Cattlefarm::getSymbol() const {
     return 'C';
 }
-string Cattlefarm::getName() const{
+
+string Cattlefarm::getName() const {
     return "Cattlefarm";
 }
