@@ -48,10 +48,11 @@ void Cattlefarm::removeDiedCow() {
     const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
-        const Employee* c = const_emp_list[i];
-        if (const_emp_list[i]->getName() == "Cow" and const_emp_list[i].isAlive){
-            fireEmployee()
-
+        if (const_emp_list[i]->getName() != "Cow" ) continue;
+        Employee* tmp_e = const_cast<Employee*>(const_emp_list[i]);
+        Cow* tmp_cow = dynamic_cast<Cow*>(tmp_e);
+        if (!tmp_cow->isAlive()){
+            fireEmployee(tmp_cow);
         }
     }
 }

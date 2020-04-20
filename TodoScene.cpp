@@ -163,3 +163,21 @@ void Scene::getConstObjects(const Object**& obj, int& count) const {
 }
 
 // TODO: Start to implement your code.
+bool Scene::isGameOver() const{
+    return getMoney() < 0;
+}
+
+void Scene::removeProperty(Property* p){
+    Property** newobjects = new Object*[m_num_objects + 1];
+    for (int i = 0; i < m_num_objects; i++)
+        newobjects[i] = m_objects[i];
+    newobjects[m_num_objects++] = newobj;
+    if (m_num_objects != 1)
+        delete [] m_objects;
+    m_objects = newobjects;
+}
+void Scene::nextRound();
+bool Scene::upgrade(Property*);
+bool Scene::fire(Employee*);
+
+
