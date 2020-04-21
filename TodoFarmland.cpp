@@ -39,7 +39,7 @@ int getRandInt(int low, int high) {
 }
 
 // TODO: Start to implement your code.
-Farmland::Farmland(int x, int y):Property(FARMLAND_COST, FARMLAND_UPGRADE_COST, FARMLAND_MAX_NUM_EMPLOYEE_MAX) {
+Farmland::Farmland(int x, int y):Property(FARMLAND_COST, FARMLAND_UPGRADE_COST, FARMLAND_MAX_NUM_EMPLOYEE_MIN) {
     setXY(x, y);
 }
 bool Farmland::checkEmployee(Employee* emp) const{
@@ -48,7 +48,10 @@ bool Farmland::checkEmployee(Employee* emp) const{
     else return false;
 }
 void Farmland::upgrade(){
-    Property::upgrade();
+    if (getLevel() < FARMLAND_MAX_NUM_EMPLOYEE_MAX) {
+        Property::upgrade();
+        setMaxNumEmployee(getMaxNumEmployee() + 1);
+    }
 }
 int Farmland::makeMoney() const {
     int emp_at_work = 0, farmers_at_work = 0;
@@ -60,7 +63,7 @@ int Farmland::makeMoney() const {
         if (const_emp_list[i]->getName() == "Farmer" and const_emp_list[i]->getState() == ObjectState::WORK)
             farmers_at_work++;
     }
-    return getRandInt(0, emp_at_work * 2 + farmers_at_work * 6 + getLevel() * 3 - 1);
+    return getRandInt(0, emp_at_work * 2 + farmers_at_work * 6 + getLevel() * 3);
 }
 char Farmland::getSymbol() const{
     return 'R';

@@ -108,7 +108,6 @@ void Employee::updateState() {
 //        }
 //    }
 
-    updateWorkAge();
 }
 
 //Increase the workage by one

@@ -27,7 +27,7 @@ const int CATTLEFARM_MAX_NUM_EMPLOYEE_MAX = (CATTLEFARM_SIZE_X - 2) * (CATTLEFAR
 
 // TODO: Start to implement your code.
 Cattlefarm::Cattlefarm(int x, int y) :
-        Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MAX) {
+        Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MIN) {
     setXY(x, y);
 }
 
@@ -38,7 +38,10 @@ bool Cattlefarm::checkEmployee(Employee * emp) const {
 }
 
 void Cattlefarm::upgrade() {
-    Property::upgrade();
+    if (getLevel() < CATTLEFARM_MAX_NUM_EMPLOYEE_MAX) {
+        Property::upgrade();
+        setMaxNumEmployee(getMaxNumEmployee() + 1);
+    }
 }
 
 int Cattlefarm::makeMoney() const {

@@ -153,8 +153,9 @@ bool Property::fireEmployee(Employee *fired_emp) {
             j++;
         }
     }
-    delete m_employee_list;
+    delete [] m_employee_list;
     delete fired_emp;
     m_employee_list = copy_of_emp;
     m_num_employee -= 1;
+    return true;
 }
