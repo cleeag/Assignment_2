@@ -29,6 +29,7 @@ const int CATTLEFARM_MAX_NUM_EMPLOYEE_MAX = (CATTLEFARM_SIZE_X - 2) * (CATTLEFAR
 Cattlefarm::Cattlefarm(int x, int y) :
         Property(CATTLEFARM_COST, CATTLEFARM_UPGRADE_COST, CATTLEFARM_MAX_NUM_EMPLOYEE_MIN) {
     setXY(x, y);
+    setSize(CATTLEFARM_SIZE_X, CATTLEFARM_SIZE_Y);
 }
 
 bool Cattlefarm::checkEmployee(Employee * emp) const {
@@ -54,6 +55,8 @@ int Cattlefarm::makeMoney() const {
         if (const_emp_list[i]->getName() == "Cow")
             num_cow++;
     }
+    cout << num_cow <<feeders_at_work << endl;
+    cout << getLevel() << endl;
     return min(num_cow, feeders_at_work) * getLevel() * 10;
 }
 

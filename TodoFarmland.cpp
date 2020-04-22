@@ -41,6 +41,7 @@ int getRandInt(int low, int high) {
 // TODO: Start to implement your code.
 Farmland::Farmland(int x, int y):Property(FARMLAND_COST, FARMLAND_UPGRADE_COST, FARMLAND_MAX_NUM_EMPLOYEE_MIN) {
     setXY(x, y);
+    setSize(FARMLAND_SIZE_X, FARMLAND_SIZE_Y);
 }
 bool Farmland::checkEmployee(Employee* emp) const{
     if (emp == nullptr) return false;

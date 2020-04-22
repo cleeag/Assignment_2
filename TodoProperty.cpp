@@ -38,12 +38,14 @@ Property::Property(int m_cost, int m_upgrade_cost, int m_max_num_employee) {
     this->m_cost = m_cost;
     this->m_upgrade_cost = m_upgrade_cost;
     this->m_max_num_employee = m_max_num_employee;
+    this->m_employee_list = new Employee* [m_max_num_employee];
 }
 
 Property::~Property() {
     for (int i = 0; i < m_num_employee; ++i) {
         delete m_employee_list[i];
     }
+    delete [] m_employee_list;
 }
 
 // Return the building cost of the property.
@@ -96,19 +98,18 @@ void Property::setMaxNumEmployee(int m) {
 // If the employee is unsuitable to the property, it fails to assign.
 // Return true, if assign successfully.
 // Otherwise, return false.
-bool Property::assignEmployee(Employee *a) {
-    if (a == nullptr) return false;
+bool Property::assignEmployee(Employee *emp) {
+    if (emp == nullptr) return false;
     if (getNumEmployee() == getMaxNumEmployee()) return false;
     for (int l = 0; l < getNumEmployee(); ++l) {
-        if (a == m_employee_list[l]) return false;
+        if (emp == m_employee_list[l]) return false;
     }
-    if (!checkEmployee(a)) return false;
+    if (!checkEmployee(emp)) return false;
 
     int x = 0, y = 0, sz_x = 0, sz_y = 0;
     int num_emp = getNumEmployee();
     getXY(x, y);
     getSize(sz_x, sz_y);
-
     for (int i = x + 1; i < x + sz_x - 1; ++i) {
         for (int j = y + 1; j < y + sz_y - 1; ++j) {
             bool available = true;
@@ -121,7 +122,9 @@ bool Property::assignEmployee(Employee *a) {
                 }
             }
             if (available) {
-                a->setXY(i, j);
+                m_employee_list[m_num_employee] = emp;
+                emp->setXY(i, j);
+                emp->updateState();
                 m_num_employee += 1;
                 return true;
             }

@@ -168,10 +168,24 @@ bool Scene::isGameOver() const {
 }
 
 void Scene::removeProperty(Property *p) {
+    const Employee **p_emp_list = new const Employee* [p->getNumEmployee()];
+    p->getConstEmployeeList(p_emp_list);
+    int tmp_num_objects = m_num_objects;
+    int tmp_emp_num = p->getNumEmployee();
+    for (int i = 0; i < tmp_num_objects; ++i) {
+        for (int j = 0; j < tmp_emp_num; ++j) {
+            if (m_objects[i] == p_emp_list[j]){
+                p->fireEmployee(dynamic_cast<Employee*>(m_objects[i]));
+                m_num_objects -= 1;
+            }
+        }
+    }
     Object **newobjects = new Object *[m_num_objects - 1];
     for (int new_i = 0, old_i = 0; old_i < m_num_objects;){
         if (m_objects[old_i] == p) {
-            new_i++;
+            delete p;
+            old_i++;
+
         } else {
             newobjects[new_i] = m_objects[old_i];
             new_i++;
@@ -226,14 +240,16 @@ bool Scene::fire(Employee * fired_emp){
             Property* tmp_p = dynamic_cast<Property*>(m_objects[old_i]);
             const Employee** tmp_emp_list = new const Employee* [tmp_p->getNumEmployee()];
             tmp_p->getConstEmployeeList(tmp_emp_list);
-            for (int i = 0; i < dynamic_cast<Property*>(m_objects[old_i])->getNumEmployee(); ++i) {
+            for (int i = 0; i < tmp_p->getNumEmployee(); ++i) {
                 if (tmp_emp_list[i] == fired_emp){
+                    cout << "fired" << endl;
                     tmp_p->fireEmployee(fired_emp);
                 }
             }
         }
+//        cout << "fdsfa" << endl;
         if (m_objects[old_i] == fired_emp) {
-            new_i++;
+            old_i++;
         } else {
             newobjects[new_i] = m_objects[old_i];
             new_i++;
