@@ -212,11 +212,14 @@ void Scene::nextRound(){
 }
 
 bool Scene::upgrade(Property * p){
+    if (p == nullptr) return false;
     if (p->getName() == "Farmland") dynamic_cast<Farmland* >(p)->upgrade();
     else if  (p->getName() == "Cattlefarm") dynamic_cast<Cattlefarm* >(p)->upgrade();
 }
 
 bool Scene::fire(Employee * fired_emp){
+    if (fired_emp == nullptr) return false;
+
     Object **newobjects = new Object *[m_num_objects - 1];
     for (int new_i = 0, old_i = 0; old_i < m_num_objects;){
         if (m_objects[old_i]->getObjectType() == ObjectType::PROPERTY){

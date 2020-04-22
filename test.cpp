@@ -49,6 +49,7 @@ void runTestCase1() {
     farmland->assignEmployee(farmer1);
     farmland->assignEmployee(employee1);
     farmland->assignEmployee(employee1);
+    cout << farmland->getNumEmployee() << endl;
     if (farmland->getNumEmployee() == 2)
         cout<< "->1/"<<steps<<" PASS."<<endl;
     else if (farmland->getNumEmployee() == 3) {
