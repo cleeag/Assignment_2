@@ -168,34 +168,25 @@ bool Scene::isGameOver() const {
 }
 
 void Scene::removeProperty(Property *p) {
-    const Employee **p_emp_list = new const Employee* [p->getNumEmployee()];
-    p->getConstEmployeeList(p_emp_list);
-    int tmp_num_objects = m_num_objects;
-    int tmp_emp_num = p->getNumEmployee();
-    for (int i = 0; i < tmp_num_objects; ++i) {
-        for (int j = 0; j < tmp_emp_num; ++j) {
-            if (m_objects[i] == p_emp_list[j]){
-                p->fireEmployee(dynamic_cast<Employee*>(m_objects[i]));
-                m_num_objects -= 1;
-            }
+    int delete_amount = 1 + p->getNumEmployee();
+    Object **newobjects = new Object *[m_num_objects - delete_amount];
+    for (int new_i = 0, old_i = 0; new_i < m_num_objects - delete_amount;) {
+        bool in_p = false;
+        for (int i = 0; i < p->getNumEmployee(); ++i) {
+            if (m_objects[old_i] == p) in_p = true;
         }
-    }
-    Object **newobjects = new Object *[m_num_objects - 1];
-    for (int new_i = 0, old_i = 0; old_i < m_num_objects;){
-        if (m_objects[old_i] == p) {
-            delete p;
+        if (m_objects[old_i] == p or in_p) {
             old_i++;
-
         } else {
             newobjects[new_i] = m_objects[old_i];
             new_i++;
             old_i++;
         }
     }
-    if (m_num_objects != 1)
-        delete[] m_objects;
+    delete p;
+    delete[] m_objects;
     m_objects = newobjects;
-    m_num_objects -= 1;
+    m_num_objects -= delete_amount;
 }
 
 // Operations to finish this round before entering the next round.
@@ -204,50 +195,75 @@ void Scene::removeProperty(Property *p) {
 // - Update employee work age
 // - Update employee status
 // - Remove died cows
-void Scene::nextRound(){
+void Scene::nextRound() {
+    cout << "next round" << endl;
+    int tmp_num_obj = m_num_objects;
+    Cow** dead_cows = new Cow* [m_num_objects];
+    int dead_cow_num = 0;
     for (int i = 0; i < m_num_objects; ++i) {
-        if (m_objects[i]->getObjectType() == ObjectType::PROPERTY){
-            m_money += dynamic_cast<Property*>(m_objects[i])->makeMoney();
-            if (m_objects[i]->getName() == "Cattlefarm") {
-                dynamic_cast<Cattlefarm*>(m_objects[i])->removeDiedCow();
-            }
-        } else if (m_objects[i]->getObjectType() == ObjectType::EMPLOYEE){
-            if (m_objects[i]->getName() == "Employee"){
+        if (m_objects[i]->getObjectType() == ObjectType::EMPLOYEE) {
+            if (m_objects[i]->getName() == "Employee") {
                 m_money -= 1;
-            } else if (m_objects[i]->getName() == "Farmer"){
+            } else if (m_objects[i]->getName() == "Farmer") {
                 m_money -= 2;
-            } else if (m_objects[i]->getName() == "Feeder"){
+            } else if (m_objects[i]->getName() == "Feeder") {
                 m_money -= 5;
-            }
-            dynamic_cast<Employee*>(m_objects[i])->updateState();
-            dynamic_cast<Employee*>(m_objects[i])->updateWorkAge();
-        }
-    }
-}
-
-bool Scene::upgrade(Property * p){
-    if (p == nullptr) return false;
-    if (p->getName() == "Farmland") dynamic_cast<Farmland* >(p)->upgrade();
-    else if  (p->getName() == "Cattlefarm") dynamic_cast<Cattlefarm* >(p)->upgrade();
-}
-
-bool Scene::fire(Employee * fired_emp){
-    if (fired_emp == nullptr) return false;
-
-    Object **newobjects = new Object *[m_num_objects - 1];
-    for (int new_i = 0, old_i = 0; old_i < m_num_objects;){
-        if (m_objects[old_i]->getObjectType() == ObjectType::PROPERTY){
-            Property* tmp_p = dynamic_cast<Property*>(m_objects[old_i]);
-            const Employee** tmp_emp_list = new const Employee* [tmp_p->getNumEmployee()];
-            tmp_p->getConstEmployeeList(tmp_emp_list);
-            for (int i = 0; i < tmp_p->getNumEmployee(); ++i) {
-                if (tmp_emp_list[i] == fired_emp){
-                    cout << "fired" << endl;
-                    tmp_p->fireEmployee(fired_emp);
+            } else if (m_objects[i]->getName() == "Cow") {
+                Cow *cow = dynamic_cast<Cow *>(m_objects[i]);
+                if (!cow->isAlive()){
+                    dead_cows[dead_cow_num] = cow;
+                    dead_cow_num += 1;
                 }
             }
         }
-//        cout << "fdsfa" << endl;
+    }
+    cout << "dead cows:" << dead_cow_num <<" / "<<m_num_objects << endl;
+    for (int k = 0; k < dead_cow_num; ++k) shallowRemoveEmployee(dead_cows[k]);
+    delete [] dead_cows;
+    cout << "dead cows:" << dead_cow_num <<" / "<<m_num_objects << endl;
+
+    for (int j = 0; j < m_num_objects; ++j) {
+        if (m_objects[j]->getObjectType() == ObjectType::PROPERTY) {
+            if (m_objects[j]->getName() == "Cattlefarm") {
+                dynamic_cast<Cattlefarm *>(m_objects[j])->removeDiedCow();
+            }
+            m_money += dynamic_cast<Property *>(m_objects[j])->makeMoney();
+        }
+    }
+    for (int l = 0; l < m_num_objects; ++l) {
+        if (m_objects[l]->getObjectType() == ObjectType::EMPLOYEE){
+            dynamic_cast<Employee *>(m_objects[l])->updateState();
+            dynamic_cast<Employee *>(m_objects[l])->updateWorkAge();
+        }
+    }
+    cout << endl;
+    cout << getMoney() << endl;
+    cout << m_num_objects << endl;
+}
+
+bool Scene::upgrade(Property *p) {
+    if (p == nullptr) return false;
+    if (p->getName() == "Farmland") dynamic_cast<Farmland * >(p)->upgrade();
+    else if (p->getName() == "Cattlefarm") dynamic_cast<Cattlefarm * >(p)->upgrade();
+}
+
+bool Scene::fire(Employee *fired_emp) {
+    if (fired_emp == nullptr) return false;
+
+    Object **newobjects = new Object *[m_num_objects - 1];
+    Property *tmp_property;
+    Property *property_with_fired_emp = nullptr;
+    for (int new_i = 0, old_i = 0; old_i < m_num_objects;) {
+        if (m_objects[old_i]->getObjectType() == ObjectType::PROPERTY) {
+            tmp_property = dynamic_cast<Property *>(m_objects[old_i]);
+            const Employee **tmp_emp_list;
+            tmp_property->getConstEmployeeList(tmp_emp_list);
+            for (int i = 0; i < tmp_property->getNumEmployee(); ++i) {
+                if (fired_emp == tmp_emp_list[i])
+                    property_with_fired_emp = tmp_property;
+            }
+            delete [] tmp_emp_list;
+        }
         if (m_objects[old_i] == fired_emp) {
             old_i++;
         } else {
@@ -256,11 +272,12 @@ bool Scene::fire(Employee * fired_emp){
             old_i++;
         }
     }
-
-    if (m_num_objects != 1)
+    if (property_with_fired_emp != nullptr) {
+        property_with_fired_emp->fireEmployee(fired_emp);
         delete[] m_objects;
-    m_objects = newobjects;
-    m_num_objects -= 1;
+        m_objects = newobjects;
+        m_num_objects -= 1;
+    }
 }
 
 

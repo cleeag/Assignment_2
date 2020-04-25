@@ -38,14 +38,18 @@ Property::Property(int m_cost, int m_upgrade_cost, int m_max_num_employee) {
     this->m_cost = m_cost;
     this->m_upgrade_cost = m_upgrade_cost;
     this->m_max_num_employee = m_max_num_employee;
-    this->m_employee_list = new Employee* [m_max_num_employee];
+    int x = 0, y = 0;
+    getSize(x, y);
+    this->m_employee_list = new Employee *[(x - 2) * (y - 2)];
 }
 
 Property::~Property() {
     for (int i = 0; i < m_num_employee; ++i) {
+        cout << m_employee_list[i]->getName() << endl;
         delete m_employee_list[i];
+        cout << "deleted" << endl;
     }
-    delete [] m_employee_list;
+    delete[] m_employee_list;
 }
 
 // Return the building cost of the property.
@@ -122,6 +126,7 @@ bool Property::assignEmployee(Employee *emp) {
                 }
             }
             if (available) {
+                cout << "debug " << m_num_employee << ": " << emp->getName() << endl;
                 m_employee_list[m_num_employee] = emp;
                 emp->setXY(i, j);
                 emp->updateState();
@@ -144,21 +149,27 @@ bool Property::assignEmployee(Employee *emp) {
 bool Property::fireEmployee(Employee *fired_emp) {
     if (fired_emp == nullptr) return false;
 
-    Employee **copy_of_emp = new Employee *[m_num_employee - 1];
-    for (int i = 0, j = 0; i < m_num_employee;){
+    bool fired = false;
+    int x = 0, y = 0;
+    getSize(x, y);
+    Employee **copy_of_emp = new Employee *[(x - 2) * (y - 2)];
+    for (int i = 0, j = 0; i < m_num_employee;) {
         if (fired_emp == m_employee_list[i]) {
             i++;
+            fired = true;
             continue;
-        }
-        else {
+        } else {
             copy_of_emp[j] = m_employee_list[i];
             i++;
             j++;
         }
     }
-    delete [] m_employee_list;
-    delete fired_emp;
+    delete[] m_employee_list;
+    if (fired) {
+        delete fired_emp;
+        m_num_employee -= 1;
+    }
     m_employee_list = copy_of_emp;
-    m_num_employee -= 1;
+
     return true;
 }

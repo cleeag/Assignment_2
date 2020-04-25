@@ -56,7 +56,7 @@ void Farmland::upgrade(){
 }
 int Farmland::makeMoney() const {
     int emp_at_work = 0, farmers_at_work = 0;
-    const Employee**  const_emp_list = new const Employee* [getNumEmployee()];
+    const Employee**  const_emp_list;
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
         if (const_emp_list[i]->getName() == "Employee" and const_emp_list[i]->getState() == ObjectState::WORK)
@@ -64,6 +64,8 @@ int Farmland::makeMoney() const {
         if (const_emp_list[i]->getName() == "Farmer" and const_emp_list[i]->getState() == ObjectState::WORK)
             farmers_at_work++;
     }
+
+    delete [] const_emp_list;
     return getRandInt(0, emp_at_work * 2 + farmers_at_work * 6 + getLevel() * 3);
 }
 char Farmland::getSymbol() const{

@@ -46,31 +46,36 @@ void Cattlefarm::upgrade() {
 }
 
 int Cattlefarm::makeMoney() const {
+    cout << "milking it" << endl;
     int num_cow = 0, feeders_at_work = 0;
-    const Employee **const_emp_list = new const Employee *[getNumEmployee()];
+    const Employee **const_emp_list;
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
+        cout << i <<" / "<<getNumEmployee()<< endl;
         if (const_emp_list[i]->getName() == "Feeder" and const_emp_list[i]->getState() == ObjectState::WORK)
             feeders_at_work++;
         if (const_emp_list[i]->getName() == "Cow")
             num_cow++;
     }
-    cout << num_cow <<feeders_at_work << endl;
-    cout << getLevel() << endl;
+    delete [] const_emp_list;
     return min(num_cow, feeders_at_work) * getLevel() * 10;
 }
 
 void Cattlefarm::removeDiedCow() {
-    const Employee **const_emp_list = new const Employee *[getNumEmployee()];
+    const Employee **const_emp_list;
     getConstEmployeeList(const_emp_list);
-    for (int i = 0; i < getNumEmployee(); ++i) {
+    int tmpe_num_emp = getNumEmployee();
+    for (int i = 0; i < tmpe_num_emp; ++i) {
         if (const_emp_list[i]->getName() != "Cow") continue;
         Employee *tmp_e = const_cast<Employee *>(const_emp_list[i]);
         Cow *tmp_cow = dynamic_cast<Cow *>(tmp_e);
         if (!tmp_cow->isAlive()) {
+            cout << "killed cow" << endl;
             fireEmployee(tmp_cow);
+            cout << tmpe_num_emp << " / " <<getNumEmployee() << endl;
         }
     }
+    delete [] const_emp_list;
 }
 
 char Cattlefarm::getSymbol() const {

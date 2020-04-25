@@ -18,6 +18,7 @@ using namespace std;
 void runTestCase1();
 void runTestCase2();
 void runTestCase3();
+void t4();
 
 int main() {
     cout << endl;
@@ -30,6 +31,7 @@ int main() {
     runTestCase1();
     runTestCase2();
     runTestCase3();
+    t4();
     cout << "ALL PASS.:)" << endl;
     cout << "Please further use Dr.Memory to check the memory leakage." <<endl;
     cout << endl;
@@ -256,4 +258,33 @@ void runTestCase3()
     delete s;
     cout << "->TEST CASE 3: PASS." << endl << endl;
     return;
+}
+
+void t4(){
+    cout << "->TEST CASE 4: Play with Died Cow" << endl;
+    int steps = 4;
+    Scene* s = new Scene();
+    int tmp3_init_money = s->getMoney();
+    const int tmp3_feeder_cost = 20;
+    const int tmp3_cow_cost = 15;
+    const int tmp3_cattlefarm_cost = 80;
+    const int tmp3_feeder_salary = 5;
+    s->addProperty(CATTLEFARM, 0, 3);
+    Object* selected_object = s->getObjectAt(0, 3);
+    s->hire(dynamic_cast<Property*>(selected_object), FEEDER);
+    s->hire(dynamic_cast<Property*>(selected_object), COW);
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    s->nextRound();
+    delete s;
 }
