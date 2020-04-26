@@ -196,8 +196,6 @@ void Scene::removeProperty(Property *p) {
 // - Update employee status
 // - Remove died cows
 void Scene::nextRound() {
-    cout << "next round" << endl;
-    int tmp_num_obj = m_num_objects;
     Cow** dead_cows = new Cow* [m_num_objects];
     int dead_cow_num = 0;
     for (int i = 0; i < m_num_objects; ++i) {
@@ -217,10 +215,8 @@ void Scene::nextRound() {
             }
         }
     }
-    cout << "dead cows:" << dead_cow_num <<" / "<<m_num_objects << endl;
     for (int k = 0; k < dead_cow_num; ++k) shallowRemoveEmployee(dead_cows[k]);
     delete [] dead_cows;
-    cout << "dead cows:" << dead_cow_num <<" / "<<m_num_objects << endl;
 
     for (int j = 0; j < m_num_objects; ++j) {
         if (m_objects[j]->getObjectType() == ObjectType::PROPERTY) {
@@ -236,9 +232,6 @@ void Scene::nextRound() {
             dynamic_cast<Employee *>(m_objects[l])->updateWorkAge();
         }
     }
-    cout << endl;
-    cout << getMoney() << endl;
-    cout << m_num_objects << endl;
 }
 
 bool Scene::upgrade(Property *p) {

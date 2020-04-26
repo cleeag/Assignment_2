@@ -46,12 +46,10 @@ void Cattlefarm::upgrade() {
 }
 
 int Cattlefarm::makeMoney() const {
-    cout << "milking it" << endl;
     int num_cow = 0, feeders_at_work = 0;
     const Employee **const_emp_list;
     getConstEmployeeList(const_emp_list);
     for (int i = 0; i < getNumEmployee(); ++i) {
-        cout << i <<" / "<<getNumEmployee()<< endl;
         if (const_emp_list[i]->getName() == "Feeder" and const_emp_list[i]->getState() == ObjectState::WORK)
             feeders_at_work++;
         if (const_emp_list[i]->getName() == "Cow")
@@ -70,9 +68,7 @@ void Cattlefarm::removeDiedCow() {
         Employee *tmp_e = const_cast<Employee *>(const_emp_list[i]);
         Cow *tmp_cow = dynamic_cast<Cow *>(tmp_e);
         if (!tmp_cow->isAlive()) {
-            cout << "killed cow" << endl;
             fireEmployee(tmp_cow);
-            cout << tmpe_num_emp << " / " <<getNumEmployee() << endl;
         }
     }
     delete [] const_emp_list;

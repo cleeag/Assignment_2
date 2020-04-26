@@ -45,9 +45,7 @@ Property::Property(int m_cost, int m_upgrade_cost, int m_max_num_employee) {
 
 Property::~Property() {
     for (int i = 0; i < m_num_employee; ++i) {
-        cout << m_employee_list[i]->getName() << endl;
         delete m_employee_list[i];
-        cout << "deleted" << endl;
     }
     delete[] m_employee_list;
 }
@@ -126,7 +124,6 @@ bool Property::assignEmployee(Employee *emp) {
                 }
             }
             if (available) {
-                cout << "debug " << m_num_employee << ": " << emp->getName() << endl;
                 m_employee_list[m_num_employee] = emp;
                 emp->setXY(i, j);
                 emp->updateState();
